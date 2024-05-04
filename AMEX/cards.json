@@ -1,0 +1,49 @@
+{
+	"cards": [
+		{
+			"imageName": "platinum",
+			"name": "Amex Platinum",
+			"maskedNumber": "••••21001"
+		},
+		{
+			"imageName": "gold",
+			"name": "Amex Gold",
+			"maskedNumber": "••••21002"
+		},
+		{
+			"imageName": "blue",
+			"name": "Blue Cash Everyday",
+			"maskedNumber": "••••21003"
+		},
+		{
+			"imageName": "green",
+			"name": "Amex Green",
+			"maskedNumber": "••••21004"
+		},
+		{
+			"imageName": "delta-blue",
+			"name": "Delta Skymiles",
+			"maskedNumber": "••••21005"
+		},
+		{
+			"imageName": "gold-delta",
+			"name": "Gold Delta Skymiles",
+			"maskedNumber": "••••21006"
+		},
+		{
+			"imageName": "marriott",
+			"name": "Amex Marriott Bonvoy",
+			"maskedNumber": "••••21007"
+		},
+		{
+			"imageName": "skymiles",
+			"name": "Amex Skymiles",
+			"maskedNumber": "••••21008"
+		},
+		{
+			"imageName": "everyday",
+			"name": "Amex Everyday",
+			"maskedNumber": "••••21009"
+		},
+	]
+}

@@ -1,36 +1,55 @@
 //
 //  AppDelegate.swift
-//  AMEX
 //
-//  Created by David Grigoryan on 5/4/24.
+//  Created by David Grigoryan
 //
 
 import UIKit
 
-@main
+@UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
+    
+    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        let cards = loadJSONData() ?? []
+        window = UIWindow(frame: UIScreen.main.bounds)
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        
+        let navigationController: UINavigationController = storyboard.instantiateViewController(withIdentifier: "NavVC") as! UINavigationController
+        
+        let mainViewController = storyboard.instantiateViewController(identifier: MainViewController.storyboardId) { coder in
+            let mainViewController = MainViewController(coder: coder, cards: cards)
+            return mainViewController
+        }
+        
+        navigationController.viewControllers = [mainViewController]
+        
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
         return true
     }
-
-    // MARK: UISceneSession Lifecycle
-
-    func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
-        // Called when a new scene session is being created.
-        // Use this method to select a configuration to create the new scene with.
-        return UISceneConfiguration(name: "Default Configuration", sessionRole: connectingSceneSession.role)
+    
+    func loadJSONData() -> [Card]? {
+        guard let url = Bundle.main.url(forResource: "cards", withExtension: "json") else {
+            print("JSON file not found")
+            return nil
+        }
+        
+        do {
+            let data = try Data(contentsOf: url)
+            if let jsonObject = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+               let cardsArray = jsonObject["cards"] as? [[String: Any]] {
+                let decoder = JSONDecoder()
+                let jsonData = try JSONSerialization.data(withJSONObject: cardsArray, options: [])
+                let cards = try decoder.decode([Card].self, from: jsonData)
+                return cards
+            }
+            return nil
+        } catch {
+            print("Error decoding JSON: \(error)")
+            return nil
+        }
     }
-
-    func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
-        // Called when the user discards a scene session.
-        // If any sessions were discarded while the application was not running, this will be called shortly after application:didFinishLaunchingWithOptions.
-        // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
-    }
-
-
 }
 

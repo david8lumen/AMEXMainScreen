@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HeaderCell" customModule="InterceptApp" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="7Q6-QQ-fzH" customClass="HeaderCell" customModule="InterceptApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="221" height="157"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="bL3-pk-xJh">
+                <rect key="frame" x="0.0" y="0.0" width="221" height="157"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hye-il-zyb">
+                        <rect key="frame" x="0.0" y="0.0" width="221" height="157"/>
+                    </imageView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <gestureRecognizers/>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="hye-il-zyb" secondAttribute="trailing" id="1WW-UM-I4o"/>
+                    <constraint firstItem="hye-il-zyb" firstAttribute="top" secondItem="bL3-pk-xJh" secondAttribute="top" id="lxU-kj-alq"/>
+                    <constraint firstItem="hye-il-zyb" firstAttribute="leading" secondItem="bL3-pk-xJh" secondAttribute="leading" id="y8N-Of-aAF"/>
+                    <constraint firstAttribute="bottom" secondItem="hye-il-zyb" secondAttribute="bottom" id="yR4-Ha-cpQ"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <gestureRecognizers/>
+            <size key="customSize" width="221" height="157"/>
+            <connections>
+                <outlet property="cardImageView" destination="hye-il-zyb" id="DZd-ln-gLE"/>
+            </connections>
+            <point key="canvasLocation" x="168.70229007633588" y="32.04225352112676"/>
+        </collectionViewCell>
+    </objects>
+</document>

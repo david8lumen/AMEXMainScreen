@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="NTE-9l-0sG" customClass="NavigationInfoView" customModule="InterceptApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="305" height="94"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B0s-34-cKA">
+                    <rect key="frame" x="8" y="0.0" width="289" height="19.333333333333332"/>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                    <color key="textColor" systemColor="systemBackgroundColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtitle" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HN8-YC-guR">
+                    <rect key="frame" x="8" y="23.333333333333332" width="289" height="13.333333333333332"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <color key="textColor" systemColor="systemBackgroundColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="QdL-Xh-TT2"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="B0s-34-cKA" firstAttribute="top" secondItem="NTE-9l-0sG" secondAttribute="top" id="BU6-0X-SDm"/>
+                <constraint firstItem="QdL-Xh-TT2" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="HN8-YC-guR" secondAttribute="bottom" constant="8" id="Blp-Nb-VlC"/>
+                <constraint firstItem="B0s-34-cKA" firstAttribute="leading" secondItem="NTE-9l-0sG" secondAttribute="leading" constant="8" id="DIW-RA-Yb9"/>
+                <constraint firstAttribute="trailing" secondItem="B0s-34-cKA" secondAttribute="trailing" constant="8" id="MmT-9T-ecL"/>
+                <constraint firstItem="HN8-YC-guR" firstAttribute="leading" secondItem="B0s-34-cKA" secondAttribute="leading" id="O4S-94-Kw8"/>
+                <constraint firstItem="B0s-34-cKA" firstAttribute="centerX" secondItem="QdL-Xh-TT2" secondAttribute="centerX" id="QHp-Zl-P1O"/>
+                <constraint firstItem="HN8-YC-guR" firstAttribute="centerX" secondItem="QdL-Xh-TT2" secondAttribute="centerX" id="TgU-Fw-hML"/>
+                <constraint firstItem="HN8-YC-guR" firstAttribute="top" secondItem="B0s-34-cKA" secondAttribute="bottom" constant="4" id="csa-Tg-S8l"/>
+                <constraint firstItem="HN8-YC-guR" firstAttribute="trailing" secondItem="B0s-34-cKA" secondAttribute="trailing" id="qUe-Cm-7cP"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="subtitleLabel" destination="HN8-YC-guR" id="3Jw-q5-aad"/>
+                <outlet property="titleLabel" destination="B0s-34-cKA" id="1IN-c4-JCz"/>
+            </connections>
+            <point key="canvasLocation" x="-154.96183206106869" y="-30.985915492957748"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
