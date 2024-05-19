@@ -8,6 +8,7 @@ import UIKit
 
 protocol CollectionCellDelegate: AnyObject {
     func collectionCell(_ collectionCell: CollectionCell, tableViewDidScrollWithOffset offset: CGPoint)
+    func collectionCell(_ collectionCell: CollectionCell, tableViewDidTapWithGesture gesture: UITapGestureRecognizer)
 }
 
 class CollectionCell: UICollectionViewCell {
@@ -33,6 +34,13 @@ class CollectionCell: UICollectionViewCell {
         tableView.showsVerticalScrollIndicator = false
         tableView.showsHorizontalScrollIndicator = false
         tableView.separatorStyle = .none
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapped(_:)))
+        tapGestureRecognizer.delegate = self
+        tableView.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    @objc func tapped(_ gesture: UITapGestureRecognizer) {
+        delegate?.collectionCell(self, tableViewDidTapWithGesture: gesture)
     }
     
     func resetTableViewOffset() {
@@ -45,6 +53,11 @@ extension CollectionCell: UITableViewDelegate, UITableViewDataSource {
         return 150
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        print("cell selected")
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         cell.textLabel?.text = "Label \(indexPath.row + 1)"
@@ -53,5 +66,18 @@ extension CollectionCell: UITableViewDelegate, UITableViewDataSource {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         delegate?.collectionCell(self, tableViewDidScrollWithOffset: scrollView.contentOffset)
+    }
+}
+
+// MARK: - UIGestureRecognizerDelegate
+extension CollectionCell: UIGestureRecognizerDelegate {
+    override func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        let indexPath = tableView.indexPathForRow(at: gestureRecognizer.location(in: tableView))
+        return indexPath == nil
+    }
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, 
+                           shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }

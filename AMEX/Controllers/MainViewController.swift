@@ -104,17 +104,20 @@ extension MainViewController: ProductInfoViewControllerDelegate {
         updateTitleViewByCurrentSelectedIndex()
     }
     
-    func productViewController(_ controller: ProductInfoViewController, didScrollHorizontally offset: CGPoint) {
+    func productViewController(_ controller: ProductInfoViewController, 
+                               collectionViewDidScrollHorizontally offset: CGPoint) {
         let factor = offset.x * headerViewController.itemWidthPercentage
         let x = factor - (headerViewController.itemRemainingWidth / 2)
         headerViewController.setHorizontalOffset(x: x)
     }
     
-    func productViewController(_ controller: ProductInfoViewController, didScrollVertically offset: CGPoint) {
+    func productViewController(_ controller: ProductInfoViewController, 
+                               collectionViewDidScrollVertically offset: CGPoint) {
         topConstraint.constant = min(-offset.y - HeaderViewController.headerHeight, 0)
     }
     
-    func productViewController(_ controller: ProductInfoViewController, didTapCollectionView gesture: UITapGestureRecognizer) {
+    func productViewController(_ controller: ProductInfoViewController, 
+                               collectionViewDidTapWithGesture gesture: UITapGestureRecognizer) {
         guard let headerItemIndexPath = headerViewController.indexPathForItem(by: gesture) else { return }
         productInfoViewController.selectItem(at: headerItemIndexPath.row)
     }

@@ -7,16 +7,22 @@
 import UIKit
 
 protocol ProductInfoViewControllerDelegate: AnyObject {
-    func productViewController(_ controller: ProductInfoViewController, didScrollHorizontally offset: CGPoint)
-    func productViewController(_ controller: ProductInfoViewController, didScrollVertically offset: CGPoint)
-    func productViewController(_ controller: ProductInfoViewController, didTapCollectionView gesture: UITapGestureRecognizer)
+    func productViewController(_ controller: ProductInfoViewController, 
+                               collectionViewDidScrollHorizontally offset: CGPoint)
+    func productViewController(_ controller: ProductInfoViewController, 
+                               collectionViewDidScrollVertically offset: CGPoint)
+    func productViewController(_ controller: ProductInfoViewController, 
+                               collectionViewDidTapWithGesture gesture: UITapGestureRecognizer)
     func productViewControllerDidFinishScrollingAnimation(_ controller: ProductInfoViewController)
 }
 
 extension ProductInfoViewControllerDelegate {
-    func productViewController(_ controller: ProductInfoViewController, didScrollHorizontally offset: CGPoint) {}
-    func productViewController(_ controller: ProductInfoViewController, didScrollVertically offset: CGPoint) {}
-    func productViewController(_ controller: ProductInfoViewController, didTapCollectionView gesture: UITapGestureRecognizer) {}
+    func productViewController(_ controller: ProductInfoViewController, 
+                               collectionViewDidScrollHorizontally offset: CGPoint) {}
+    func productViewController(_ controller: ProductInfoViewController, 
+                               collectionViewDidScrollVertically offset: CGPoint) {}
+    func productViewController(_ controller: ProductInfoViewController, 
+                               collectionViewDidTapWithGesture gesture: UITapGestureRecognizer) {}
     func productViewControllerDidFinishScrollingAnimation(_ controller: ProductInfoViewController) {}
 }
 
@@ -50,16 +56,6 @@ class ProductInfoViewController: UIViewController {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.decelerationRate = .init(rawValue: 0)
-        
-//        feedbackGenerator.prepare()
-        
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(plainCollectionTapped))
-        tapGesture.delegate = self
-        collectionView.addGestureRecognizer(tapGesture)
-    }
-    
-    @objc func plainCollectionTapped(gesture: UITapGestureRecognizer) {
-        delegate?.productViewController(self, didTapCollectionView: gesture)
     }
     
     override func viewDidLayoutSubviews() {
@@ -125,7 +121,7 @@ extension ProductInfoViewController: UICollectionViewDelegate {
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        delegate?.productViewController(self, didScrollHorizontally: scrollView.contentOffset)
+        delegate?.productViewController(self, collectionViewDidScrollHorizontally: scrollView.contentOffset)
         let visibleCollectionCells = collectionView.visibleCells as? [CollectionCell]
         visibleCollectionCells?.forEach { $0.resetTableViewOffset() }
     }
@@ -163,7 +159,11 @@ extension ProductInfoViewController: UIGestureRecognizerDelegate {
 
 // MARK: - CollectionCellDelegate
 extension ProductInfoViewController: CollectionCellDelegate {
+    func collectionCell(_ collectionCell: CollectionCell, tableViewDidTapWithGesture gesture: UITapGestureRecognizer) {
+        delegate?.productViewController(self, collectionViewDidTapWithGesture: gesture)
+    }
+
     func collectionCell(_ collectionCell: CollectionCell, tableViewDidScrollWithOffset offset: CGPoint) {
-        delegate?.productViewController(self, didScrollVertically: offset)
+        delegate?.productViewController(self, collectionViewDidScrollVertically: offset)
     }
 }
